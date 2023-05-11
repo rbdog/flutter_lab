@@ -1,0 +1,33 @@
+name: flutter_lab
+description: A new Flutter project.
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.0.0
+
+scripts:
+  doc: dart scripts/doc.dart
+
+dependencies:
+  flutter:
+    sdk: flutter
+  ui_router:
+  flutter_riverpod:
+  flutter_hooks:
+  riverpod_annotation:
+  freezed_annotation:
+  google_sign_in:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints:
+  build_runner:
+  freezed:
+
+flutter:
+  assets:
+    - assets/images/
+    - assets/fonts/
