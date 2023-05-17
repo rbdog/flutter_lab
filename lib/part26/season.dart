@@ -1,5 +1,5 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-part 'state.g.dart';
+part 'season.g.dart';
 
 /// 季節
 enum Season {
@@ -9,7 +9,7 @@ enum Season {
   winter, // 冬
 }
 
-/// 季節を管理するノティファイヤー (& 自動で作られるプロバイダー)
+/// 季節を状態管理
 @riverpod
 class SeasonNotifier extends _$SeasonNotifier {
   @override
@@ -18,7 +18,7 @@ class SeasonNotifier extends _$SeasonNotifier {
   }
 
   /// 季節を変更する
-  void updateState(Season season) {
+  void updateSeason(Season season) {
     state = season;
   }
 }

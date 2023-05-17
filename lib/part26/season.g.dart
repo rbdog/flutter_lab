@@ -1,14 +1,16 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'state.dart';
+part of 'season.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$seasonNotifierHash() => r'ac4b520b2bdf9612dba5f7c611d2dcef01a74a3f';
+String _$seasonNotifierHash() => r'b9bb3ba7916d435e2ae5774315261bcbe544784f';
 
-/// See also [SeasonNotifier].
+/// 季節を状態管理
+///
+/// Copied from [SeasonNotifier].
 @ProviderFor(SeasonNotifier)
 final seasonNotifierProvider =
     AutoDisposeNotifierProvider<SeasonNotifier, Season>.internal(

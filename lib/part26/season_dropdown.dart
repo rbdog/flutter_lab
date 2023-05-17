@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_lab/dropdown/state.dart';
+import 'package:flutter_lab/part26/season.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 /// 季節を選択するドロップダウン
@@ -31,12 +31,14 @@ class SeasonDropdown extends ConsumerWidget {
       ),
     ];
 
+    // ドロップダウンボタン
     return DropdownButton(
       value: season,
       items: items,
       onChanged: (value) {
+        // ノティファイヤー
         final notifier = ref.read(seasonNotifierProvider.notifier);
-        notifier.updateState(value!);
+        notifier.updateSeason(value!);
       },
       focusColor: Colors.transparent,
     );
