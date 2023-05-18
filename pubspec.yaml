@@ -19,6 +19,7 @@ dependencies:
   riverpod_annotation:
   freezed_annotation:
   google_sign_in:
+  envied:
 
 dev_dependencies:
   flutter_test:
@@ -28,6 +29,7 @@ dev_dependencies:
   json_serializable:
   riverpod_generator:
   freezed:
+  envied_generator:
 
 flutter:
   uses-material-design: true
