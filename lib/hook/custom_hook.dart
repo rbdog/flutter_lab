@@ -14,13 +14,13 @@ class MyController {
   void dispose() {
     debugPrint('Myコントローラーを捨てます');
   }
+
+  void buttonEvent() {
+    debugPrint('これはボタンを押したときに呼ばれます');
+  }
 }
 
-/* この関数を HookWidget の中から呼ぶ */
-
-MyController useMyController() => use(_Hook());
-
-/* StatefulWidget の代わりにこの下に色々書いておく */
+/* カスタムHook */
 
 class _Hook extends Hook<MyController> {
   @override
@@ -28,26 +28,37 @@ class _Hook extends Hook<MyController> {
 }
 
 class _State extends HookState<MyController, _Hook> {
-  late MyController controller;
+  late MyController myController;
 
   @override
   void initHook() {
     super.initHook();
-    // コントローラーを作る
-    controller = MyController();
-    // コントローラーを準備
-    controller.init();
+    // Myコントローラーを作る
+    myController = MyController();
+    // Myコントローラーを準備
+    myController.init();
   }
 
   @override
-  MyController build(BuildContext context) {
-    return controller;
+  void didUpdateHook(_Hook oldHook) {
+    super.didUpdateHook(oldHook);
+    // Myコントローラーをアップデート
+    myController.update();
   }
 
   @override
   void dispose() {
-    // コントローラーを捨てる
-    controller.dispose();
+    // Myコントローラーを捨てる
+    myController.dispose();
     super.dispose();
   }
+
+  @override
+  MyController build(BuildContext context) {
+    return myController;
+  }
 }
+
+/* Widget から呼ぶ関数 */
+
+MyController useMyController() => use(_Hook());

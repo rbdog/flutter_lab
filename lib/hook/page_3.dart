@@ -4,8 +4,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 ///
 /// useTextEditingController
 ///
-class MyWidget3 extends HookWidget {
-  const MyWidget3({super.key});
+class Page3 extends HookWidget {
+  const Page3({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,12 +25,19 @@ class MyWidget3 extends HookWidget {
     );
 
     // 縦に並べる
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        textField,
-        button,
-      ],
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('例: useTextEditingController()'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            textField,
+            button,
+          ],
+        ),
+      ),
     );
   }
 }

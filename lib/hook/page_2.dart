@@ -4,8 +4,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 ///
 /// useEffect
 ///
-class MyWidget2 extends HookWidget {
-  const MyWidget2({super.key});
+class Page2 extends HookWidget {
+  const Page2({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -48,11 +48,18 @@ class MyWidget2 extends HookWidget {
     );
 
     // 縦に並べる
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        button,
-      ],
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('例: useEffect()'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            button,
+          ],
+        ),
+      ),
     );
   }
 }

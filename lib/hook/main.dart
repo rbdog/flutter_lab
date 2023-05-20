@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_lab/hook/my_widget_1.dart';
-import 'package:flutter_lab/hook/my_widget_2.dart';
-import 'package:flutter_lab/hook/my_widget_3.dart';
-import 'package:flutter_lab/hook/my_widget_4.dart';
+import 'package:flutter_lab/hook/page_1.dart';
+import 'package:flutter_lab/hook/page_2.dart';
+import 'package:flutter_lab/hook/page_3.dart';
+import 'package:flutter_lab/hook/page_4.dart';
 
 void main() {
   const app = MyApp();
   runApp(app);
 }
 
+/// アプリ本体
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -19,27 +20,16 @@ class MyApp extends StatelessWidget {
       initialRoute: '/home',
       routes: {
         '/home': (context) => const HomePage(),
-        '/1': (context) => const MyPage(
-              title: 'useState()',
-              child: MyWidget1(),
-            ),
-        '/2': (context) => const MyPage(
-              title: 'useEffect()',
-              child: MyWidget2(),
-            ),
-        '/3': (context) => const MyPage(
-              title: 'useTextEditingController()',
-              child: MyWidget3(),
-            ),
-        '/4': (context) => const MyPage(
-              title: 'useMyController()',
-              child: MyWidget4(),
-            ),
+        '/1': (context) => const Page1(),
+        '/2': (context) => const Page2(),
+        '/3': (context) => const Page3(),
+        '/4': (context) => const Page4(),
       },
     );
   }
 }
 
+/// ホーム画面
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -77,25 +67,6 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class MyPage extends StatelessWidget {
-  const MyPage({
-    super.key,
-    required this.title,
-    required this.child,
-  });
-
-  final String title;
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text(title)),
-      body: Center(child: child),
     );
   }
 }

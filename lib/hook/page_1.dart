@@ -4,8 +4,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 ///
 /// useState
 ///
-class MyWidget1 extends HookWidget {
-  const MyWidget1({super.key});
+class Page1 extends HookWidget {
+  const Page1({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,12 +24,19 @@ class MyWidget1 extends HookWidget {
     );
 
     // 縦に並べる
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        text,
-        button,
-      ],
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('例: useState()'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            text,
+            button,
+          ],
+        ),
+      ),
     );
   }
 }

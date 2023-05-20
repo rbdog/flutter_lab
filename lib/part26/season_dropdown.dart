@@ -35,10 +35,10 @@ class SeasonDropdown extends ConsumerWidget {
     return DropdownButton(
       value: season,
       items: items,
-      onChanged: (value) {
+      onChanged: (newSeason) {
         // ノティファイヤー
         final notifier = ref.read(seasonNotifierProvider.notifier);
-        notifier.updateSeason(value!);
+        notifier.updateSeason(newSeason!);
       },
       focusColor: Colors.transparent,
     );
