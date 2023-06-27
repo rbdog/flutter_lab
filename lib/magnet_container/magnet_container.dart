@@ -15,7 +15,6 @@ import 'package:flutter_lab/child_size_reader/child_size_reader.dart';
 class MagnetContainer extends StatefulWidget {
   const MagnetContainer({
     super.key,
-    this.autoReset = true,
     this.initialAlign = Alignment.center,
     this.onHitTop,
     this.onHitBottom,
@@ -23,7 +22,6 @@ class MagnetContainer extends StatefulWidget {
   });
   final void Function()? onHitTop;
   final void Function()? onHitBottom;
-  final bool autoReset;
   final Alignment initialAlign;
   final Widget child;
   @override
@@ -49,25 +47,25 @@ class _MagnetContainerState extends State<MagnetContainer> {
     });
   }
 
-  void onDragStart(DragStartDetails details) {
+  void onStartDrag(DragStartDetails details) {
     setState(() {
       _dragStartAlign = _align;
       _dragStartGlobalY = details.globalPosition.dy;
     });
   }
 
-  void onDragUpdate(DragUpdateDetails details, BuildContext context) {
+  void onUpdateDrag(DragUpdateDetails details, BuildContext context) {
     final maxOffsetY = context.size!.height - _childHeight!;
     final offsetY = details.globalPosition.dy - _dragStartGlobalY!;
     final offsetAlignY = (offsetY / maxOffsetY) * (bottom.y - top.y);
-    final currentAlign = _dragStartAlign?.y ?? widget.initialAlign.y;
-    final newAlignY = currentAlign + offsetAlignY;
+    final oldAlignY = _dragStartAlign?.y ?? widget.initialAlign.y;
+    final newAlignY = oldAlignY + offsetAlignY;
     setState(() {
       _align = Alignment(Alignment.center.x, newAlignY);
     });
   }
 
-  void onDragEnd(DragEndDetails details) {
+  void onEndDrag(DragEndDetails details) {
     if (_align == top || _align == bottom) {
       // skip animation
       onEndAnimation();
@@ -98,7 +96,6 @@ class _MagnetContainerState extends State<MagnetContainer> {
       widget.onHitBottom?.call();
     }
     setState(() {
-      _align = widget.autoReset ? widget.initialAlign : _align;
       _duration = Duration.zero;
     });
     return;
@@ -131,9 +128,9 @@ class _MagnetContainerState extends State<MagnetContainer> {
       duration: _duration,
       onEnd: onEndAnimation,
       child: GestureDetector(
-        onVerticalDragStart: onDragStart,
-        onVerticalDragUpdate: (details) => onDragUpdate(details, context),
-        onVerticalDragEnd: onDragEnd,
+        onVerticalDragStart: onStartDrag,
+        onVerticalDragUpdate: (details) => onUpdateDrag(details, context),
+        onVerticalDragEnd: onEndDrag,
         child: ChildSizeReader(
           onRead: onReadChildHeight,
           child: widget.child,
