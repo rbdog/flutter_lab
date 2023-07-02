@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
 
-class MyDialog extends StatelessWidget {
-  const MyDialog({super.key});
+/// レモン ダイアログ
+class LemonDialog extends StatelessWidget {
+  const LemonDialog({super.key});
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('タイトル'),
-      content: const Text('コンテント'),
+      title: const Text('レモン'),
+      content: const Text('唐揚げにかけても良いですか？'),
       actions: [
         TextButton(
           onPressed: () {
-            Navigator.pop(context, 'キャンセルを押しました');
+            Navigator.pop(context, 'A');
           },
           child: const Text('キャンセル'),
         ),
         TextButton(
           onPressed: () {
-            Navigator.pop(context, 'OKを押しました');
+            Navigator.pop(context, 'B');
           },
           child: const Text('OK'),
         ),
