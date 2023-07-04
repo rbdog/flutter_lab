@@ -31,6 +31,7 @@ class HomePage extends HookWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
+          const MyLabel(),
           MyTextField(controller: controller),
           MyButton(controller: controller),
         ],

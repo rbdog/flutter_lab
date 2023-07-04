@@ -1,7 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lab/shared_prefs/state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
+class MyLabel extends ConsumerWidget {
+  const MyLabel({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final asyncDrink = ref.watch(drinkNotifierProvider);
+    return asyncDrink.when(
+      loading: () => const CircularProgressIndicator(),
+      error: (_, __) => const CircularProgressIndicator(),
+      data: (drink) => Text(drink),
+    );
+  }
+}
 
 class MyTextField extends ConsumerWidget {
   const MyTextField({
@@ -13,12 +26,12 @@ class MyTextField extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final asyncName = ref.watch(nameNotifierProvider);
-    return asyncName.when(
+    final asyncDrink = ref.watch(drinkNotifierProvider);
+    return asyncDrink.when(
       loading: () => const CircularProgressIndicator(),
       error: (_, __) => const CircularProgressIndicator(),
-      data: (name) {
-        controller.text = name;
+      data: (drink) {
+        controller.text = drink;
         return TextField(controller: controller);
       },
     );
@@ -37,16 +50,9 @@ class MyButton extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return ElevatedButton(
       onPressed: () async {
-        final name = controller.text;
-
-        // メモリに保存
-        final notifier = ref.read(nameNotifierProvider.notifier);
-        notifier.updateName(name);
-
-        // ストレージに保存
-        final prefs = await SharedPreferences.getInstance();
-        await prefs.setString('name', name);
-        debugPrint('保存しました');
+        final drink = controller.text;
+        final notifier = ref.read(drinkNotifierProvider.notifier);
+        notifier.saveDrink(drink);
       },
       child: const Text('保存'),
     );

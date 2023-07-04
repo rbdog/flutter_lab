@@ -1,18 +1,23 @@
+import 'package:flutter_lab/shared_prefs/kv.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 part 'state.g.dart';
 
 @Riverpod()
-class NameNotifier extends _$NameNotifier {
+class DrinkNotifier extends _$DrinkNotifier {
   @override
   Future<String> build() async {
-    const sec5 = Duration(seconds: 5);
+    const sec5 = Duration(seconds: 5); // 公開前には消す
     await Future.delayed(sec5);
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getString('name') ?? '未設定';
+    // KVストレージから読み取る
+    final kv = KV();
+    return kv.loadDrink();
   }
 
-  void updateName(String name) {
-    state = AsyncValue.data(name);
+  Future<void> saveDrink(String drink) async {
+    // KVストレージに保存
+    final kv = KV();
+    await kv.saveDrink(state.value!);
+    // アプリ内の状態を変更
+    state = AsyncValue.data(drink);
   }
 }
