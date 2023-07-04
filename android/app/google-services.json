@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "132329368813",
+    "project_id": "rbdog-flutter-lab",
+    "storage_bucket": "rbdog-flutter-lab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:132329368813:android:26e4c1d4990fe18b61f0e4",
+        "android_client_info": {
+          "package_name": "com.example.flutter_lab"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "132329368813-4f6d5j4jl9i84iek37rf637fb88rqn6d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAldmVBeygsCHdL7qwCFERi-pofHeCdAsc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "132329368813-4f6d5j4jl9i84iek37rf637fb88rqn6d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

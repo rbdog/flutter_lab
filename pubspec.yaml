@@ -21,6 +21,8 @@ dependencies:
   google_sign_in:
   envied:
   shared_preferences:
+  firebase_core:
+  cloud_firestore:
 
 dev_dependencies:
   flutter_test:
