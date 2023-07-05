@@ -2,22 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_lab/shared_prefs/state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class MyLabel extends ConsumerWidget {
-  const MyLabel({super.key});
+/// ドリンクを表示するだけ
+class DrinkText extends ConsumerWidget {
+  const DrinkText({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final asyncDrink = ref.watch(drinkNotifierProvider);
-    return asyncDrink.when(
-      loading: () => const CircularProgressIndicator(),
-      error: (_, __) => const CircularProgressIndicator(),
-      data: (drink) => Text(drink),
-    );
+    final drink = ref.watch(drinkNotifierProvider);
+    return switch (drink) {
+      AsyncData(:final value) => Text(value),
+      AsyncValue() => const CircularProgressIndicator(),
+    };
   }
 }
 
-class MyTextField extends ConsumerWidget {
-  const MyTextField({
+/// ドリンクを編集できるテキストフィールド
+class DrinkTextField extends ConsumerWidget {
+  const DrinkTextField({
     super.key,
     required this.controller,
   });
@@ -26,20 +27,19 @@ class MyTextField extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final asyncDrink = ref.watch(drinkNotifierProvider);
-    return asyncDrink.when(
-      loading: () => const CircularProgressIndicator(),
-      error: (_, __) => const CircularProgressIndicator(),
-      data: (drink) {
-        controller.text = drink;
-        return TextField(controller: controller);
-      },
-    );
+    final drink = ref.watch(drinkNotifierProvider);
+    return switch (drink) {
+      AsyncData(:final value) => TextField(
+          controller: controller..text = value,
+        ),
+      AsyncValue() => const CircularProgressIndicator(),
+    };
   }
 }
 
-class MyButton extends ConsumerWidget {
-  const MyButton({
+/// ドリンクを保存するボタン
+class DrinkSaveButton extends ConsumerWidget {
+  const DrinkSaveButton({
     super.key,
     required this.controller,
   });
@@ -52,7 +52,7 @@ class MyButton extends ConsumerWidget {
       onPressed: () async {
         final drink = controller.text;
         final notifier = ref.read(drinkNotifierProvider.notifier);
-        notifier.saveDrink(drink);
+        notifier.updateDrink(drink);
       },
       child: const Text('保存'),
     );

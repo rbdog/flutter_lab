@@ -39,6 +39,7 @@ class BorderedField extends HookWidget {
       style: style,
       cursorColor: style.color,
       decoration: InputDecoration(
+        filled: true,
         fillColor: color,
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.all(
@@ -50,6 +51,15 @@ class BorderedField extends HookWidget {
           ),
         ),
         border: OutlineInputBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(radius),
+          ),
+          borderSide: BorderSide(
+            color: borderColor,
+            width: borderWidth,
+          ),
+        ),
+        enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.all(
             Radius.circular(radius),
           ),

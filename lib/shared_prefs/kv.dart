@@ -1,17 +1,22 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-class KV {
-  Future<void> saveDrink(String value) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(
-      'drink',
-      value,
-    );
-  }
+/// ドリンクを保存する
+Future<void> saveDrink(String value) async {
+  // パッケージを使う
+  final prefs = await SharedPreferences.getInstance();
+  // キーとバリューを保存
+  await prefs.setString(
+    'drink', // キー
+    value, // バリュー
+  );
+}
 
-  Future<String> loadDrink() async {
-    final prefs = await SharedPreferences.getInstance();
-    final value = prefs.getString('drink');
-    return value ?? 'お水';
-  }
+/// ドリンクを取り出す
+Future<String> loadDrink() async {
+  // パッケージを使う
+  final prefs = await SharedPreferences.getInstance();
+  // キーを使って探す
+  final value = prefs.getString('drink'); // キー
+  // 見つからなかったら お水 にする
+  return value ?? 'お水';
 }
