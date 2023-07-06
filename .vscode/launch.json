@@ -10,7 +10,7 @@
             "args": [
                 "--debug",
                 "-t",
-                "lib/shared_prefs/demo.dart",
+                "lib/main.dart",
                 "-d",
                 "${config:ios.simulator}"
             ]
